@@ -161,12 +161,16 @@ body {
 
   .server-ip-subtitle {
     margin-top: 10px;
-    margin-bottom: 18px;
+    margin-bottom: 6px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 1rem;
     color: #f4b4fb;
     opacity: 0.95;
+  }
+
+  .server-version {
+    margin-bottom: 18px;
   }
 
   .page-footer {
@@ -285,8 +289,8 @@ body {
   }
 
   .logo {
-    width: 72px;
-    height: 72px;
+    width: min(220px, 80vw);
+    height: auto;
   }
 
   .server-description {
