@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LordLess | Servidor de Minecraft</title>
+
+  <!-- ================================================
+       Tipografías: Sora (títulos) + Inter (texto general)
+       ================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Fondo animado de partículas (decorativo, solo CSS) -->
+  <div class="particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <main class="container">
+
+    <!-- ================================================
+         LOGO
+         Coloca tu archivo "logo.png" en la misma carpeta
+         que este HTML y aparecerá automáticamente aquí.
+         ================================================ -->
+    <div class="logo-wrapper">
+      <img src="logo.png" alt="Logo LordLess" class="logo" onerror="this.style.display='none'">
+    </div>
+
+    <!-- ================================================
+         NOMBRE DEL SERVIDOR
+         Edita el texto de abajo para cambiar el nombre.
+         ================================================ -->
+    <h1 class="server-name">LordLess</h1>
+
+    <!-- ================================================
+         DESCRIPCIÓN DEL SERVIDOR
+         Edita el texto de abajo para cambiar la descripción.
+         ================================================ -->
+    <p class="server-description">
+      Una experiencia Minecraft distinta. Mods cuidadosamente seleccionados,
+      una comunidad cercana y un mundo que evoluciona contigo.
+    </p>
+
+    <!-- ================================================
+         BOTONES DE ACCIÓN
+         ================================================ -->
+    <div class="button-group">
+
+      <!-- BOTÓN 1: Mods -->
+      <!-- Edita el href="" con el enlace real de tus mods -->
+      <a href="https://www.mediafire.com/file/zu9mbviwnuok0bb/mods.zip/file" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Mods
+      </a>
+
+      <!-- BOTÓN 2: Descargar Fabric -->
+      <!-- Edita el href="" con el enlace real de descarga de Fabric -->
+      <a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Descargar Fabric
+      </a>
+
+      <!-- BOTÓN 3: Copiar IP -->
+      <button type="button" class="btn btn-secondary" id="copyIpBtn">
+        Copiar IP
+      </button>
+
+      <!-- BOTÓN 4: Discord -->
+      <!-- Edita el href="" con el enlace real de tu servidor de Discord -->
+      <a href="https://discord.gg/KWUkjQk75" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Discord
+      </a>
+
+    </div>
+
+  </main>
+
+  <!-- Notificación flotante al copiar la IP -->
+  <div class="toast" id="toast">¡IP copiada al portapapeles!</div>
+
+  <!-- ================================================
+       SCRIPT: Copiar IP al portapapeles
+       Edita SERVER_IP con la IP real de tu servidor.
+       ================================================ -->
+  <script>
+    const SERVER_IP = "lordless.nexhost.cc"; // <-- Edita aquí tu IP del servidor
+
+    const copyBtn = document.getElementById('copyIpBtn');
+    const toast = document.getElementById('toast');
+    let toastTimeout;
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(SERVER_IP);
+      } catch (err) {
+        // Método alternativo por si el navegador bloquea la API de portapapeles
+        const tempInput = document.createElement('input');
+        tempInput.value = SERVER_IP;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      }
+
+      // Mostrar notificación
+      clearTimeout(toastTimeout);
+      toast.classList.add('show');
+
+      // Ocultar notificación automáticamente
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    });
+  </script>
+
+</body>
+</html>
