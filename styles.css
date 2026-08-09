@@ -33,9 +33,13 @@ body {
   color: var(--text-primary);
   background-color: var(--bg-base);
   background-image:
-    radial-gradient(circle at 20% 15%, rgba(76, 42, 134, 0.35), transparent 45%),
-    radial-gradient(circle at 80% 85%, rgba(30, 58, 138, 0.35), transparent 45%),
+    radial-gradient(circle at 18% 12%, rgba(76, 42, 134, 0.46), transparent 38%),
+    radial-gradient(circle at 78% 92%, rgba(30, 58, 138, 0.48), transparent 42%),
+    radial-gradient(circle at 52% 46%, rgba(139, 92, 246, 0.26), transparent 38%),
     linear-gradient(180deg, #08070d 0%, #0a0a14 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -44,6 +48,249 @@ body {
   gap: 20px;
   overflow-x: hidden;
   position: relative;
+}
+
+body.mods-page {
+  min-height: auto;
+  display: block;
+  padding: 34px 0;
+}
+
+body.mods-page .particles {
+  position: fixed;
+}
+
+/* ============================================================
+   Mod list page styles - reuse design palette
+   ============================================================ */
+
+.mod-list-page {
+  width: min(1160px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 30px 24px 48px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+}
+
+.mods-page-header {
+  padding: 20px 0 24px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.mods-page-header .mods-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  background: rgba(139, 92, 246, 0.14);
+  color: #d7cbff;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mods-page-header h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.02;
+  margin: 14px 0 10px;
+  letter-spacing: -0.05em;
+  background: linear-gradient(120deg, #ffffff 0%, var(--accent-purple) 55%, var(--accent-blue) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mods-page-header .lead {
+  max-width: 760px;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.mods-search {
+  position: sticky;
+  top: 10px;
+  z-index: 10;
+  margin: 24px 0 28px;
+}
+
+.mods-search input {
+  width: 100%;
+  padding: 15px 17px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(17, 21, 29, 0.94);
+  backdrop-filter: blur(14px);
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 10px 28px rgba(0,0,0,.22);
+}
+
+.mods-search input:focus {
+  border-color: var(--accent-purple);
+}
+
+.mods-page .category {
+  margin: 34px 0 42px;
+}
+
+.mods-page .cat-head {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 14px;
+}
+
+.mods-page .cat-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 13px;
+  font-size: 1.35rem;
+}
+
+.mods-page .cat-head h2 {
+  margin: 0;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.mods-page .cat-head span:last-child {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}
+
+.mods-page .grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mods-page .mod {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  padding: 14px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 15px;
+  min-height: 92px;
+  transition: 0.18s transform, 0.18s border-color, 0.18s background;
+}
+
+.mods-page .mod:hover {
+  transform: translateY(-2px);
+  border-color: rgba(139, 92, 246, 0.55);
+  background: linear-gradient(145deg, rgba(139, 92, 246, 0.10), rgba(59, 130, 246, 0.10));
+}
+
+.mods-page .mod-icon {
+  flex: 0 0 43px;
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(255,255,255,0.06);
+  font-size: 1.35rem;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.mods-page .mod-info {
+  min-width: 0;
+}
+
+.mods-page .mod-info h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.98rem;
+  margin: 1px 0 5px;
+  color: var(--text-primary);
+}
+
+.mods-page .mod-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+}
+
+.mods-page footer {
+  padding-top: 20px;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.mods-page .hidden {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  .mod-list-page {
+    width: min(100%, calc(100% - 18px));
+    padding-top: 18px;
+  }
+
+  .mods-page-header {
+    padding: 10px 0 22px;
+  }
+
+  .mods-page-header h1 {
+    font-size: 2.25rem;
+  }
+
+  .mods-page .grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .mods-page .category {
+    margin: 27px 0 34px;
+  }
+
+  .mods-page .mod {
+    min-height: 0;
+    padding: 12px;
+  }
+
+  .mods-page .mod-icon {
+    flex-basis: 39px;
+    width: 39px;
+    height: 39px;
+    font-size: 1.2rem;
+  }
+
+  .mods-page .mod-info h3 {
+    font-size: 0.94rem;
+  }
+
+  .mods-page .mod-info p {
+    font-size: 0.82rem;
+  }
+
+  .mods-search {
+    top: 7px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .mods-page .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 /* ============================================================
